@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <cc.wujunyu.security.version>1.0-SNAPSHOT</cc.wujunyu.security.version>
+    </properties>
+
     <groupId>cc.wujunyu.security</groupId>
     <artifactId>cc-security</artifactId>
     <packaging>pom</packaging>

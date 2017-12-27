@@ -11,5 +11,11 @@
 
     <artifactId>cc-security-app</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>cc.wujunyu.security</groupId>
+            <artifactId>cc-security-core</artifactId>
+            <version>${cc.wujunyu.security.version}</version>
+        </dependency>
+    </dependencies>
 </project>
