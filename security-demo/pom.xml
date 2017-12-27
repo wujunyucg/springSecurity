@@ -11,5 +11,9 @@
 
     <artifactId>cc-security-demo</artifactId>
 
-
+    <dependency>
+        <groupId>cc.wujunyu.security</groupId>
+        <artifactId>cc-security-core</artifactId>
+        <version>${cc.wujunyu.security.version}</version>
+    </dependency>
 </project>
