@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @GetMapping
     @JsonView(User.UserSimpleView.class)
     public List<User> query(UserQueryCondition userName, Pageable pageable) {
         List<User> users = new ArrayList<>();
@@ -22,7 +23,7 @@ public class UserController {
         return users;
     }
 
-    @RequestMapping(value = "user/{id:\\d+}", method = RequestMethod.GET)
+    @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable() String id) {
         User user = new User();
