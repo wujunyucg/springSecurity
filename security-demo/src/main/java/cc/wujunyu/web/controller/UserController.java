@@ -2,10 +2,7 @@ package cc.wujunyu.web.controller;
 
 import cc.wujunyu.dto.User;
 import cc.wujunyu.dto.UserQueryCondition;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
 import java.util.ArrayList;
@@ -21,5 +18,12 @@ public class UserController {
         users.add(new User());
         users.add(new User());
         return users;
+    }
+
+    @RequestMapping(value = "user/{id:\\d+}", method = RequestMethod.GET)
+    public User getInfo(@PathVariable() String id) {
+        User user = new User();
+        user.setUserName("tom");
+        return user;
     }
 }
