@@ -12,15 +12,11 @@
     <artifactId>cc-security-demo</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>RELEASE</version>
+            <groupId>cc.wujunyu.security</groupId>
+            <artifactId>cc-security-core</artifactId>
+            <version>${cc.wujunyu.security.version}</version>
         </dependency>
     </dependencies>
 
-    <dependency>
-        <groupId>cc.wujunyu.security</groupId>
-        <artifactId>cc-security-core</artifactId>
-        <version>${cc.wujunyu.security.version}</version>
-    </dependency>
+
 </project>
