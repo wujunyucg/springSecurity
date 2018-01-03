@@ -1,6 +1,7 @@
 package cc.wujunyu.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class User {
     }
 
     private String userName;
+    @NotBlank
     private String password;
     private String id;
     private Date birthday;
