@@ -1,5 +1,6 @@
 package cc.wujunyu.dto;
 
+import cc.wujunyu.validator.MyConstraint;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -16,6 +17,7 @@ public class User {
 
     }
 
+    @MyConstraint(message = "名字不能为空")
     private String userName;
     @NotBlank(message = "密码不能为空")
     private String password;
