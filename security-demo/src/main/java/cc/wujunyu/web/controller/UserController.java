@@ -25,6 +25,11 @@ public class UserController {
         return user;
     }
 
+    @DeleteMapping("/{id:\\d+}")
+    public User delete(@PathVariable String id) {
+        return null;
+    }
+
     @PostMapping
     public User create(@Valid @RequestBody User user, BindingResult errors) {
         if (errors.hasErrors()) {
