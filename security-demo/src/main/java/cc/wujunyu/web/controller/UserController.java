@@ -15,6 +15,16 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    @PutMapping("/{id:\\d+}")
+    public User update(@Valid @RequestBody User user, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> {
+                System.out.println(error.getDefaultMessage());
+            });
+        }
+        return user;
+    }
+
     @PostMapping
     public User create(@Valid @RequestBody User user, BindingResult errors) {
         if (errors.hasErrors()) {

@@ -3,6 +3,7 @@ package cc.wujunyu.dto;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 public class User {
@@ -16,9 +17,10 @@ public class User {
     }
 
     private String userName;
-    @NotBlank
+    @NotBlank(message = "密码不能为空")
     private String password;
     private String id;
+    @Past(message = "生日必须是之前的日期")
     private Date birthday;
 
     @JsonView(UserSimpleView.class)
