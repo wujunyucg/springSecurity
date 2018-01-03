@@ -13,6 +13,15 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    @PostMapping
+    public User create(@RequestBody User user) {
+        System.out.println(user.getUserName());
+        System.out.println(user.getPassword());
+        System.out.println(user.getBirthday());
+        user.setId("1");
+        return  user;
+    }
+
     @GetMapping
     @JsonView(User.UserSimpleView.class)
     public List<User> query(UserQueryCondition userName, Pageable pageable) {
