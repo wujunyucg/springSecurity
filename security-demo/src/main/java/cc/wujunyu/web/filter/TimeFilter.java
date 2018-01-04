@@ -18,11 +18,11 @@ public class TimeFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("time filter start");
-        long start = new Date().getTime();
+//        System.out.println("time filter start");
+//        long start = new Date().getTime();
         filterChain.doFilter(servletRequest, servletResponse);
-        System.out.println("time filter: " + (new Date().getTime() - start));
-        System.out.println("time filter finish");
+//        System.out.println("time filter: " + (new Date().getTime() - start));
+//        System.out.println("time filter finish");
     }
 
     @Override
