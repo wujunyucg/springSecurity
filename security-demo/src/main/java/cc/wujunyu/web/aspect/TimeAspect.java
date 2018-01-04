@@ -17,16 +17,16 @@ public class TimeAspect {
 
     @Around("execution(* cc.wujunyu.web.controller.UserController.*(..))")
     public Object handlerControllerMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("time aspect start");
+//        System.out.println("time aspect start");
         long start = new Date().getTime();
         //方法的参数
         Object[] args = joinPoint.getArgs();
         for (Object arg : args) {
-            System.out.println("arg is " + arg);
+//            System.out.println("arg is " + arg);
         }
         Object object = joinPoint.proceed();
-        System.out.println("time aspect: " + (new Date().getTime() - start));
-        System.out.println("time aspect finish");
+//        System.out.println("time aspect: " + (new Date().getTime() - start));
+//        System.out.println("time aspect finish");
         return object;
     }
 }
