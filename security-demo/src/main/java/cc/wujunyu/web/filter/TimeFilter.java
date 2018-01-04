@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 记录服务的处理时间
  */
-@Component
+//@Component
 public class TimeFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
