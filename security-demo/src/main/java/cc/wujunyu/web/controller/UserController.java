@@ -4,6 +4,8 @@ import cc.wujunyu.dto.User;
 import cc.wujunyu.dto.UserQueryCondition;
 import cc.wujunyu.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +48,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
+    @ApiOperation(value = "用户查询操作")
     public List<User> query(UserQueryCondition userName, Pageable pageable) {
         List<User> users = new ArrayList<>();
         users.add(new User());
@@ -56,7 +59,7 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
-    public User getInfo(@PathVariable() String id) {
+    public User getInfo(@ApiParam(value = "用户id")@PathVariable() String id) {
 //        throw new UserNotExistException(id);
         System.out.println("getInfo start");
         User user = new User();

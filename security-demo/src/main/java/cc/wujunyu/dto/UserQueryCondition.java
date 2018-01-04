@@ -1,6 +1,9 @@
 package cc.wujunyu.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class UserQueryCondition {
+    @ApiModelProperty(value = "用户姓名")
     private String userName;
     private int age;
     private int ageTo;
