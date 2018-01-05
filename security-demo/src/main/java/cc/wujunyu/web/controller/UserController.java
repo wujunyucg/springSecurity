@@ -4,9 +4,12 @@ import cc.wujunyu.dto.User;
 import cc.wujunyu.dto.UserQueryCondition;
 import cc.wujunyu.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @GetMapping("/me")
+    public Object getCurrentUser(Authentication authentication) {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
 
     @PutMapping("/{id:\\d+}")
     public User update(@Valid @RequestBody User user, BindingResult errors) {
