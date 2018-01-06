@@ -67,7 +67,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(myUserDetailService)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/code/image",
+                .antMatchers("/code/*",
                         "/authentication/require", securityProperties.getBrowser().getLoginPage()).permitAll()
                 .anyRequest()
                 .authenticated()

@@ -1,6 +1,7 @@
 package cc.wujunyu.security.core.validate.code;
 
 import cc.wujunyu.security.core.properties.SecurityProperties;
+import cc.wujunyu.security.core.validate.code.images.ImageCodeGenerator;
 import cc.wujunyu.security.core.validate.code.sms.DefaultSmsCodeSender;
 import cc.wujunyu.security.core.validate.code.sms.SmsCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ValidateCodeBeanConfig {
     }
 
     @Bean
-    @ConditionalOnMissingBean(name = "smsCodeGenerator")
+    @ConditionalOnMissingBean(name = "smsCodeSender")
     public SmsCodeSender smsCodeSender() {
         DefaultSmsCodeSender smsCodeSender = new DefaultSmsCodeSender();
         return smsCodeSender;

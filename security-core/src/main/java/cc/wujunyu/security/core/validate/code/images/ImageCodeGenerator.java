@@ -1,8 +1,7 @@
-package cc.wujunyu.security.core.validate.code;
+package cc.wujunyu.security.core.validate.code.images;
 
 import cc.wujunyu.security.core.properties.SecurityProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import cc.wujunyu.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 

@@ -1,8 +1,7 @@
 package cc.wujunyu.code;
 
-import cc.wujunyu.security.core.validate.code.ImageCode;
+import cc.wujunyu.security.core.validate.code.images.ImageCode;
 import cc.wujunyu.security.core.validate.code.ValidateCodeGenerator;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
 //@Component("imageCodeGenerator")

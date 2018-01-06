@@ -1,5 +1,7 @@
-package cc.wujunyu.security.core.validate.code;
+package cc.wujunyu.security.core.validate.code.images;
 
+
+import cc.wujunyu.security.core.validate.code.ValidateCode;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
