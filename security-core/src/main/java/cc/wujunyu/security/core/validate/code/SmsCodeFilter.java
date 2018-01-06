@@ -39,7 +39,7 @@ public class SmsCodeFilter extends OncePerRequestFilter implements InitializingB
         super.afterPropertiesSet();
         String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode()
                 .getSms().getUrl(), ",");
-        if (ArrayUtils.isEmpty(configUrls)) {
+        if (ArrayUtils.isNotEmpty(configUrls)) {
             for (String configUrl : configUrls) {
                 urls.add(configUrl);
             }

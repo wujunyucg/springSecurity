@@ -39,7 +39,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         super.afterPropertiesSet();
         String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode()
                 .getImage().getUrl(), ",");
-        if (ArrayUtils.isEmpty(configUrls)) {
+        if (ArrayUtils.isNotEmpty(configUrls)) {
             for (String configUrl : configUrls) {
                 urls.add(configUrl);
             }
