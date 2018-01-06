@@ -1,4 +1,4 @@
-package cc.wujunyu.security.core.validate.code.images;
+package cc.wujunyu.security.core.validate.code.image;
 
 
 import cc.wujunyu.security.core.validate.code.ValidateCode;

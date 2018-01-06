@@ -1,11 +1,10 @@
-package cc.wujunyu.security.core.validate.code.images;
+package cc.wujunyu.security.core.validate.code.image;
 
 import cc.wujunyu.security.core.validate.code.ValidateCode;
 import cc.wujunyu.security.core.validate.code.impl.AbstractValidateCodeProcessor;
 import cc.wujunyu.security.core.validate.code.sms.SmsCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.imageio.ImageIO;

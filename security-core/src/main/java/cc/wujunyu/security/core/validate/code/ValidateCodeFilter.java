@@ -1,7 +1,7 @@
 package cc.wujunyu.security.core.validate.code;
 
 import cc.wujunyu.security.core.properties.SecurityProperties;
-import cc.wujunyu.security.core.validate.code.images.ImageCode;
+import cc.wujunyu.security.core.validate.code.image.ImageCode;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;

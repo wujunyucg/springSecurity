@@ -1,6 +1,6 @@
 package cc.wujunyu.code;
 
-import cc.wujunyu.security.core.validate.code.images.ImageCode;
+import cc.wujunyu.security.core.validate.code.image.ImageCode;
 import cc.wujunyu.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.web.context.request.ServletWebRequest;
 
