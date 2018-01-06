@@ -1,5 +1,6 @@
 package cc.wujunyu.security.core.validate.code;
 
+import cc.wujunyu.security.core.properties.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,17 +15,17 @@ import java.util.Map;
 public class ValidateCodeController {
 
 
-
+    @Autowired
+    private ValidateCodeProcessorHolder validateCodeProcessorHolder;
     @Autowired
     private Map<String, ValidateCodeProcessor> validateCodeProcessors;
 
 
-    @GetMapping("/code/{type}")
-    public void createCode(HttpServletRequest request, HttpServletResponse response,@PathVariable String type)
+    @GetMapping(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/{type}")
+    public void createCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String type)
             throws Exception {
-        validateCodeProcessors.get(type+"CodeProcessor").create(new ServletWebRequest(request, response));
+        validateCodeProcessorHolder.findValidateCodeProcessor(type).create(new ServletWebRequest(request, response));
     }
-
 
 
 }

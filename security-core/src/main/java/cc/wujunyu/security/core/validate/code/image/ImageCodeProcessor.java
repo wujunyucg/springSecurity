@@ -9,7 +9,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.imageio.ImageIO;
 
-@Component("imageCodeProcessor")
+@Component("imageValidateCodeProcessor")
 public class ImageCodeProcessor extends AbstractValidateCodeProcessor<ValidateCode> {
 
     /**
@@ -23,5 +23,6 @@ public class ImageCodeProcessor extends AbstractValidateCodeProcessor<ValidateCo
     protected void send(ServletWebRequest request, ValidateCode validateCode) throws Exception {
         ImageIO.write(((ImageCode) validateCode).getImage(), "JPEG", request.getResponse().getOutputStream());
     }
+
 
 }
