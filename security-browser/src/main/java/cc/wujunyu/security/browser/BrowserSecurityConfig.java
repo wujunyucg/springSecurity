@@ -32,6 +32,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         ValidateCodeFilter filter = new ValidateCodeFilter();
         filter.setAuthenticationFailureHandler(myAuthenticationFailureHandler);
+        filter.setSecurityProperties(securityProperties);
+        filter.afterPropertiesSet();
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
             .formLogin()
             .loginPage("/authentication/require")
