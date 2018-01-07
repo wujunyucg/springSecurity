@@ -2,12 +2,9 @@ package cc.wujunyu.web.controller;
 
 import cc.wujunyu.dto.User;
 import cc.wujunyu.dto.UserQueryCondition;
-import cc.wujunyu.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
@@ -57,7 +54,7 @@ public class UserController {
     @GetMapping
     @JsonView(User.UserSimpleView.class)
     @ApiOperation(value = "用户查询操作")
-    public List<User> query(UserQueryCondition userName, Pageable pageable) {
+    public List<User> query(UserQueryCondition userName) {
         List<User> users = new ArrayList<>();
         users.add(new User());
         users.add(new User());
