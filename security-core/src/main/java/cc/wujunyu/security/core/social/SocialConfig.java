@@ -1,5 +1,6 @@
 package cc.wujunyu.security.core.social;
 
+import cc.wujunyu.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private SecurityProperties securityProperties;
+
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
@@ -28,6 +33,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     @Bean
     public SpringSocialConfigurer socialSecurityConfig() {
-        return new SpringSocialConfigurer();
+        String filterProcessUrl = securityProperties.getSocial().getFilterProcessUrl();
+        return new MySpringSocialConfigure(filterProcessUrl);
     }
 }
