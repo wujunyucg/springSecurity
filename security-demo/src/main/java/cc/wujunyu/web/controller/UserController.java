@@ -22,6 +22,10 @@ public class UserController {
     public Object getCurrentUser(Authentication authentication) {
         return SecurityContextHolder.getContext().getAuthentication();
     }
+    @PostMapping("/regist")
+    public void regist(User user) {
+        // 注册用户
+    }
 
     @PutMapping("/{id:\\d+}")
     public User update(@Valid @RequestBody User user, BindingResult errors) {
