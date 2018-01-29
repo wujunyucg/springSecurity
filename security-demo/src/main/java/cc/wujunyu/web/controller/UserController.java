@@ -5,11 +5,15 @@ import cc.wujunyu.dto.UserQueryCondition;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.ServletWebRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +22,18 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    private ProviderSignInUtils providerSignInUtils;
+
     @GetMapping("/me")
     public Object getCurrentUser(Authentication authentication) {
         return SecurityContextHolder.getContext().getAuthentication();
     }
     @PostMapping("/regist")
-    public void regist(User user) {
-        // 注册用户
+    public void regist(User user, HttpServletRequest request) {
+        String userId = user.getUserName();
+
+        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
     }
 
     @PutMapping("/{id:\\d+}")
