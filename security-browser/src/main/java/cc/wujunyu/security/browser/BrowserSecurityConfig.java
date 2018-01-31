@@ -1,5 +1,6 @@
 package cc.wujunyu.security.browser;
 
+import cc.wujunyu.security.browser.session.MyExpiredSessionStrategy;
 import cc.wujunyu.security.core.AbstractChannelSecurityConfig;
 import cc.wujunyu.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import cc.wujunyu.security.core.properties.SecurityProperties;
@@ -70,6 +71,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                 .and()
             .sessionManagement()
                 .invalidSessionUrl("/session/invalid")
+                .maximumSessions(1)
+                .expiredSessionStrategy(new MyExpiredSessionStrategy())
+                .and()
                 .and()
             .authorizeRequests()
                 .antMatchers(
