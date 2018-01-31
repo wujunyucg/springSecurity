@@ -5,7 +5,18 @@ public class BrowserProperties {
     private LoginType loginType = LoginType.JSON;
     private int rememberMeSeconds = 3600;
     private String signUpUrl = SecurityConstants.DEFAULT_SIGN_UP_URL;
+
+
+    private String signOutUrl;
     private SessionProperties session = new SessionProperties();
+
+    public String getSignOutUrl() {
+        return signOutUrl;
+    }
+
+    public void setSignOutUrl(String signOutUrl) {
+        this.signOutUrl = signOutUrl;
+    }
 
     public SessionProperties getSession() {
         return session;

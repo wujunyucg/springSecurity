@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.InvalidSessionStrategy;
@@ -49,6 +50,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private InvalidSessionStrategy invalidSessionStrategy;
 
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -79,11 +83,17 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                 .and()
             .sessionManagement()
                 .invalidSessionStrategy(invalidSessionStrategy)
-                .invalidSessionUrl("/session/invalid")
                 .maximumSessions(securityProperties.getBrowser().getSession().getMaximumSessions())
                 .maxSessionsPreventsLogin(securityProperties.getBrowser().getSession().isMaxSessionsPreventsLogin())
                 .expiredSessionStrategy(sessionInformationExpiredStrategy)
                 .and()
+                .and()
+            .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler(logoutSuccessHandler)
+//                和前者互斥
+//                .logoutSuccessUrl("/default-logout.html")
+                .deleteCookies("JSESSIONID")
                 .and()
             .authorizeRequests()
                 .antMatchers(
@@ -92,7 +102,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         securityProperties.getBrowser().getLoginPage(),
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*",
                         securityProperties.getBrowser().getSignUpUrl(),
-                        "/user/regist", "/session/invalid")
+                        securityProperties.getBrowser().getSignOutUrl(),
+                        securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
+                        "/user/regist")
                         .permitAll()
                 .anyRequest()
                 .authenticated()
