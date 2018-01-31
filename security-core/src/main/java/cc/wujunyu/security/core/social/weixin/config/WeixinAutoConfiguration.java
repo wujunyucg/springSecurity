@@ -2,6 +2,7 @@ package cc.wujunyu.security.core.social.weixin.config;
 
 import cc.wujunyu.security.core.properties.SecurityProperties;
 import cc.wujunyu.security.core.properties.WeixinProperties;
+import cc.wujunyu.security.core.social.MyConnectView;
 import cc.wujunyu.security.core.social.weixin.connect.WeixinConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -33,11 +34,11 @@ public class WeixinAutoConfiguration extends SocialAutoConfigurerAdapter {
                 weixinConfig.getAppSecret());
     }
 
-//    @Bean({"connect/weixinConnect", "connect/weixinConnected"})
-//    @ConditionalOnMissingBean(name = "weixinConnectedView")
-//    public View weixinConnectedView() {
-//        return new MyConnectView();
-//    }
+    @Bean({"connect/weixinConnect","connect/callbackConnect", "connect/weixinConnected", "connect/callbackConnected"})
+    @ConditionalOnMissingBean(name = "weixinConnectedView")
+    public View weixinConnectedView() {
+        return new MyConnectView();
+    }
 
 }
 
