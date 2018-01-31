@@ -72,6 +72,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
             .sessionManagement()
                 .invalidSessionUrl("/session/invalid")
                 .maximumSessions(1)
+                .maxSessionsPreventsLogin(true)
                 .expiredSessionStrategy(new MyExpiredSessionStrategy())
                 .and()
                 .and()
