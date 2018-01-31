@@ -6,10 +6,21 @@ import org.springframework.security.web.session.SessionInformationExpiredStrateg
 import javax.servlet.ServletException;
 import java.io.IOException;
 
-public class MyExpiredSessionStrategy implements SessionInformationExpiredStrategy {
+public class MyExpiredSessionStrategy extends AbstractSessionStrategy implements SessionInformationExpiredStrategy {
+    /**
+     * @param invalidSessionUrl
+     */
+    public MyExpiredSessionStrategy(String invalidSessionUrl) {
+        super(invalidSessionUrl);
+    }
+
     @Override
     public void onExpiredSessionDetected(SessionInformationExpiredEvent sessionInformationExpiredEvent) throws IOException, ServletException {
-        sessionInformationExpiredEvent.getResponse().setContentType("application/json;charset=UTF-8");
-        sessionInformationExpiredEvent.getResponse().getWriter().write("并非登录");
+        onSessionInvalid(sessionInformationExpiredEvent.getRequest(), sessionInformationExpiredEvent.getResponse());
+    }
+
+    @Override
+    protected boolean isConcurrency() {
+        return true;
     }
 }
