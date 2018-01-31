@@ -35,6 +35,7 @@ public class BrowserSecurityController {
     private SecurityProperties securityProperties;
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
+
     /**
      * 当需要身份认证时,跳转至此方法
      *
@@ -67,5 +68,12 @@ public class BrowserSecurityController {
         userInfo.setNickname(connection.getDisplayName());
         userInfo.setHeadimg(connection.getImageUrl());
         return userInfo;
+    }
+
+    @GetMapping("/session/invalid")
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public SimpleResponse sessionInvalid() {
+        String message = "session失效";
+        return new SimpleResponse(message);
     }
 }
