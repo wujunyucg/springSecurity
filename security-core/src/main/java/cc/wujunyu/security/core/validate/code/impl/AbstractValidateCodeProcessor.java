@@ -18,6 +18,8 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
      */
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
+    @Autowired
+    private ValidateCodeRepository validateCodeRepository;
     /**
      * 实现了 ValidateCodeGenerator 接口的类
      */
@@ -46,6 +48,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 
     /**
      * 根据请求获取验证码类型
+     *
      * @param request
      * @return
      */
@@ -70,17 +73,17 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
      */
     private void save(ServletWebRequest request, C validateCode) {
         ValidateCode code = new ValidateCode(validateCode.getCode(), validateCode.getExpireTime());
-        sessionStrategy.setAttribute(request, getSessionKey(request)
-                , code);
+//        sessionStrategy.setAttribute(request, getSessionKey(request)
+//                , code);
+        validateCodeRepository.save(request, code, getValidateCodeType(request));
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void validate(ServletWebRequest request) {
         ValidateCodeType processorType = getValidateCodeType(request);
-        String sessionKey = getSessionKey(request);
 
-        C codeInSession = (C) sessionStrategy.getAttribute(request, sessionKey);
+        C codeInSession = (C) validateCodeRepository.get(request, processorType);
 
         String codeInRequest;
         try {
@@ -99,7 +102,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
         }
 
         if (codeInSession.isExpired()) {
-            sessionStrategy.removeAttribute(request, sessionKey);
+            validateCodeRepository.remove(request, processorType);
             throw new ValidateCodeException(processorType + "验证码已过期");
         }
 
@@ -107,7 +110,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
             throw new ValidateCodeException(processorType + "验证码不匹配");
         }
 
-        sessionStrategy.removeAttribute(request, sessionKey);
+        validateCodeRepository.remove(request, processorType);
     }
 
     /**
