@@ -28,12 +28,14 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     @Autowired(required = false)
     private ConnectionSignUp connectionSignUp;
+    @Autowired
+    private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
 //        repository.setTablePrefix("");
-        if(connectionSignUp != null) {
+        if (connectionSignUp != null) {
             repository.setConnectionSignUp(connectionSignUp);
         }
         return repository;
@@ -43,6 +45,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public SpringSocialConfigurer socialSecurityConfig() {
         String filterProcessUrl = securityProperties.getSocial().getFilterProcessUrl();
         MySpringSocialConfigure configure = new MySpringSocialConfigure(filterProcessUrl);
+        configure.setSocialAuthenticationFilterPostProcessor(socialAuthenticationFilterPostProcessor);
         configure.signupUrl(securityProperties.getBrowser().getSignUpUrl());
         return configure;
     }

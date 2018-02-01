@@ -1,5 +1,6 @@
 package cc.wujunyu.security.app;
 
+import cc.wujunyu.security.app.authentication.openid.OpenIdAuthenticationSecurityConfig;
 import cc.wujunyu.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import cc.wujunyu.security.core.properties.SecurityConstants;
 import cc.wujunyu.security.core.properties.SecurityProperties;
@@ -31,6 +32,9 @@ public class MyResourcesServerConfig extends ResourceServerConfigurerAdapter {
     private SpringSocialConfigurer socialSecurityConfig;
 
     @Autowired
+    private OpenIdAuthenticationSecurityConfig openIdAuthenticationSecurityConfig;
+
+    @Autowired
     private SecurityProperties securityProperties;
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -44,6 +48,8 @@ public class MyResourcesServerConfig extends ResourceServerConfigurerAdapter {
                 .apply(smsCodeAuthenticationSecurityConfig)
                 .and()
                 .apply(socialSecurityConfig)
+                .and()
+                .apply(openIdAuthenticationSecurityConfig)
                 .and()
                 .authorizeRequests()
                 .antMatchers(

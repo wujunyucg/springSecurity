@@ -43,4 +43,27 @@ public interface SecurityConstants {
      */
     String DEFAULT_SESSION_INVALID_URL = "/default-session-timeout.html";
 
+    /**
+     * <pre>默认的openid登录处理的接口地址</pre>
+     */
+    String DEFAULT_LOGIN_PROCESS_URL_OPENID = "/authentication/openid";
+    /**
+     * <pre>openId参数名称</pre>
+     */
+    String DEFAULT_PARAMETER_NAME_OPENID = "openId";
+
+    /**
+     * <pre>服务提供商的参数名称</pre>
+     */
+    String DEFAULT_PARAMETER_NAME_PROVIDERID = "providerId";
+
+    /**
+     * <pre>默认的OAuth2的应用Id</pre>
+     */
+    String DEFAULT_OAUTH_CLIENT_CLIENTID = "wujunyu";
+
+    /**
+     * <pre>默认的OAuth2的应用Secret</pre>
+     */
+    String DEFAULT_OAUTH_CLIENT_CLIENTSECRET = "wujunyusecurity";
 }
