@@ -1,6 +1,6 @@
 package cc.wujunyu.security.browser;
 
-import cc.wujunyu.security.browser.support.SimpleResponse;
+import cc.wujunyu.security.core.support.SimpleResponse;
 import cc.wujunyu.security.browser.support.SocialUserInfo;
 import cc.wujunyu.security.core.properties.SecurityProperties;
 import org.apache.commons.lang.StringUtils;

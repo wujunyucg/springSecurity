@@ -1,8 +1,8 @@
-package cc.wujunyu.security.browser.authentication;
+package cc.wujunyu.security.app.authentication;
 
-import cc.wujunyu.security.core.support.SimpleResponse;
 import cc.wujunyu.security.core.properties.LoginType;
 import cc.wujunyu.security.core.properties.SecurityProperties;
+import cc.wujunyu.security.core.support.SimpleResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

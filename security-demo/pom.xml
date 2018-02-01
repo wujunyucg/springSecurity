@@ -11,9 +11,14 @@
 
     <artifactId>cc-security-demo</artifactId>
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>cc.wujunyu.security</groupId>-->
+            <!--<artifactId>cc-security-browser</artifactId>-->
+            <!--<version>${cc.wujunyu.security.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>cc.wujunyu.security</groupId>
-            <artifactId>cc-security-browser</artifactId>
+            <artifactId>cc-security-app</artifactId>
             <version>${cc.wujunyu.security.version}</version>
         </dependency>
         <dependency>

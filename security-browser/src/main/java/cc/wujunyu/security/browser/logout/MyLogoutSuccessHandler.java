@@ -1,6 +1,6 @@
 package cc.wujunyu.security.browser.logout;
 
-import cc.wujunyu.security.browser.support.SimpleResponse;
+import cc.wujunyu.security.core.support.SimpleResponse;
 import cc.wujunyu.security.core.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;;

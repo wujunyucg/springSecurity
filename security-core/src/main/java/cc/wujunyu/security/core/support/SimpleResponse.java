@@ -1,4 +1,4 @@
-package cc.wujunyu.security.browser.support;
+package cc.wujunyu.security.core.support;
 
 public class SimpleResponse {
     public SimpleResponse(Object content) {
