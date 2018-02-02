@@ -65,6 +65,7 @@ public class MyAuthorizationServerConfig extends AuthorizationServerConfigurerAd
                 builder.withClient(config.getClientId())
                         .secret(config.getClientSecret())
                         .accessTokenValiditySeconds(config.getAccessTokenValiditySeconds())
+                        .refreshTokenValiditySeconds(259200)
                         .authorizedGrantTypes("refresh_token", "password")
                         .scopes("all", "read", "write");
             }
