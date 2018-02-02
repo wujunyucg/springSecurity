@@ -34,82 +34,82 @@ public class UserControllerTest {
 
     @Test
     public void whenQuerySuccess() throws Exception {
-        String result = mockMvc.perform(MockMvcRequestBuilders.get("/user")
-                .param("userName", "wujunyu")
-                .param("age", "18")
-                .param("ageTo", "55")
-                .param("size", "20")
-                .param("page", "1")
-                .param("sort", "age,desc")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3))
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+//        String result = mockMvc.perform(MockMvcRequestBuilders.get("/user")
+//                .param("userName", "wujunyu")
+//                .param("age", "18")
+//                .param("ageTo", "55")
+//                .param("size", "20")
+//                .param("page", "1")
+//                .param("sort", "age,desc")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3))
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(result);
     }
 
     @Test
     public void whenGetInfoSuccess() throws Exception {
-        String result = mockMvc.perform(MockMvcRequestBuilders.get("/user/1")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.userName").value("tom"))
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+//        String result = mockMvc.perform(MockMvcRequestBuilders.get("/user/1")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.userName").value("tom"))
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(result);
     }
 
     @Test
     public void whenGetInfoFail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/a")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+//        mockMvc.perform(MockMvcRequestBuilders.get("/user/a")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8))
+//                .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 
     @Test
     public void whenCreateSuccess() throws Exception {
-        Date date = new Date();
-        System.out.println(date.getTime());
-        String content = "{\"userName\":\"tom\", \"password\":null, \"birthday\":\"" + date.getTime() + "\"}";
-        String result = mockMvc.perform(MockMvcRequestBuilders.post("/user")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(content))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+//        Date date = new Date();
+//        System.out.println(date.getTime());
+//        String content = "{\"userName\":\"tom\", \"password\":null, \"birthday\":\"" + date.getTime() + "\"}";
+//        String result = mockMvc.perform(MockMvcRequestBuilders.post("/user")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(content))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(result);
     }
 
     @Test
     public void whenUpdateSuccess() throws Exception {
-        Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-        System.out.println(date.getTime());
-        String content = "{\"id\":\"1\", \"userName\":\"tom\", \"password\":null, \"birthday\":\"" + date.getTime() + "\"}";
-        String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/1")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(content))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+//        Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+//        System.out.println(date.getTime());
+//        String content = "{\"id\":\"1\", \"userName\":\"tom\", \"password\":null, \"birthday\":\"" + date.getTime() + "\"}";
+//        String result = mockMvc.perform(MockMvcRequestBuilders.put("/user/1")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .content(content))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(result);
     }
 
     @Test
     public void whenDeleteSuccess() throws Exception {
-        String result = mockMvc.perform(MockMvcRequestBuilders.delete("/user/1")
-                .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+//        String result = mockMvc.perform(MockMvcRequestBuilders.delete("/user/1")
+//                .contentType(MediaType.APPLICATION_JSON_UTF8))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(result);
     }
 
     @Test
     public void whenUploadSuccess() throws Exception {
-        String result = mockMvc.perform(MockMvcRequestBuilders.fileUpload("/file")
-                .file(new MockMultipartFile("file", "test.txt",
-                        "multipart/form-data", "hello upload".getBytes("UTF-8"))))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
+//        String result = mockMvc.perform(MockMvcRequestBuilders.fileUpload("/file")
+//                .file(new MockMultipartFile("file", "test.txt",
+//                        "multipart/form-data", "hello upload".getBytes("UTF-8"))))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(result);
     }
 
 }
