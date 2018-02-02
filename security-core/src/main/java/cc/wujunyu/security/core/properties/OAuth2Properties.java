@@ -4,6 +4,16 @@ public class OAuth2Properties {
 
     private OAuth2ClientProperties[] clients = {};
 
+    private String jwtSigningKey = "wujunyu";
+
+    public String getJwtSigningKey() {
+        return jwtSigningKey;
+    }
+
+    public void setJwtSigningKey(String jwtSigningKey) {
+        this.jwtSigningKey = jwtSigningKey;
+    }
+
     public OAuth2ClientProperties[] getClients() {
         return clients;
     }
