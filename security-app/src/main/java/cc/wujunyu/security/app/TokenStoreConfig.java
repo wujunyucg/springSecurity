@@ -35,7 +35,7 @@ public class TokenStoreConfig {
         private SecurityProperties securityProperties;
 
         @Bean
-        public TokenStore JwtTokenStore() {
+        public TokenStore jwtTokenStore() {
             return new JwtTokenStore(jwtAccessTokenConverter());
         }
 
