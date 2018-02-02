@@ -31,7 +31,8 @@ public class UserController {
 
     @GetMapping("/me")
     public Object getCurrentUser(Authentication authentication) {
-        return SecurityContextHolder.getContext().getAuthentication();
+//        return SecurityContextHolder.getContext().getAuthentication();
+        return authentication;
     }
 
     @PostMapping("/regist")
