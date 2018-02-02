@@ -1,4 +1,4 @@
-package cc.wujunyu.security.browser.support;
+package cc.wujunyu.security.core.social;
 
 public class SocialUserInfo {
     private String providerId;

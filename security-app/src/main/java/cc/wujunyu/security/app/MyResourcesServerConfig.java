@@ -60,6 +60,7 @@ public class MyResourcesServerConfig extends ResourceServerConfigurerAdapter {
                         securityProperties.getBrowser().getSignUpUrl(),
                         securityProperties.getBrowser().getSignOutUrl(),
                         securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
+                        "/social/signup",
                         "/user/regist")
                 .permitAll()
                 .anyRequest()

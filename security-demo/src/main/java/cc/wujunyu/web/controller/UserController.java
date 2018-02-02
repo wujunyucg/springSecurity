@@ -2,6 +2,7 @@ package cc.wujunyu.web.controller;
 
 import cc.wujunyu.dto.User;
 import cc.wujunyu.dto.UserQueryCondition;
+import cc.wujunyu.security.app.social.AppSignUpUtils;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,15 +26,20 @@ public class UserController {
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
 
+    @Autowired
+    private AppSignUpUtils appSignUpUtils;
+
     @GetMapping("/me")
     public Object getCurrentUser(Authentication authentication) {
         return SecurityContextHolder.getContext().getAuthentication();
     }
+
     @PostMapping("/regist")
     public void regist(User user, HttpServletRequest request) {
         String userId = user.getUserName();
 
         providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+        appSignUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
     }
 
     @PutMapping("/{id:\\d+}")
@@ -77,7 +83,7 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
-    public User getInfo(@ApiParam(value = "用户id")@PathVariable() String id) {
+    public User getInfo(@ApiParam(value = "用户id") @PathVariable() String id) {
 //        throw new UserNotExistException(id);
         System.out.println("getInfo start");
         User user = new User();
