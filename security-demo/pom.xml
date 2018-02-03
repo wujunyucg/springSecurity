@@ -11,16 +11,16 @@
 
     <artifactId>cc-security-demo</artifactId>
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>cc.wujunyu.security</groupId>-->
-            <!--<artifactId>cc-security-browser</artifactId>-->
-            <!--<version>${cc.wujunyu.security.version}</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>cc.wujunyu.security</groupId>
-            <artifactId>cc-security-app</artifactId>
+            <artifactId>cc-security-browser</artifactId>
             <version>${cc.wujunyu.security.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>cc.wujunyu.security</groupId>-->
+            <!--<artifactId>cc-security-app</artifactId>-->
+            <!--<version>${cc.wujunyu.security.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

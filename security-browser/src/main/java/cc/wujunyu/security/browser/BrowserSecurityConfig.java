@@ -3,6 +3,7 @@ package cc.wujunyu.security.browser;
 import cc.wujunyu.security.browser.session.MyExpiredSessionStrategy;
 import cc.wujunyu.security.core.AbstractChannelSecurityConfig;
 import cc.wujunyu.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
+import cc.wujunyu.security.core.authorize.AuthorizeConfigManager;
 import cc.wujunyu.security.core.properties.SecurityProperties;
 import cc.wujunyu.security.core.properties.SecurityConstants;
 import cc.wujunyu.security.core.validate.code.ValidateCodeSecurityConfig;
@@ -54,7 +55,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
 
-
+    @Autowired
+    private AuthorizeConfigManager authorizeConfigManager;
 
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
@@ -93,21 +95,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 //                .logoutSuccessUrl("/default-logout.html")
                 .deleteCookies("JSESSIONID")
                 .and()
-            .authorizeRequests()
-                .antMatchers(
-                        SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-                        SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
-                        securityProperties.getBrowser().getLoginPage(),
-                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*",
-                        securityProperties.getBrowser().getSignUpUrl(),
-                        securityProperties.getBrowser().getSignOutUrl(),
-                        securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
-                        "/user/regist")
-                        .permitAll()
-//                .antMatchers(HttpMethod.GET,"/user/*").hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
             .csrf().disable();
+        authorizeConfigManager.config(http.authorizeRequests());
     }
 }

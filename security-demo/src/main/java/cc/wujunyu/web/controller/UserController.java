@@ -2,7 +2,7 @@ package cc.wujunyu.web.controller;
 
 import cc.wujunyu.dto.User;
 import cc.wujunyu.dto.UserQueryCondition;
-import cc.wujunyu.security.app.social.AppSignUpUtils;
+//import cc.wujunyu.security.app.social.AppSignUpUtils;
 import cc.wujunyu.security.core.properties.SecurityProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.jsonwebtoken.Claims;
@@ -33,8 +33,8 @@ public class UserController {
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
 
-    @Autowired
-    private AppSignUpUtils appSignUpUtils;
+//    @Autowired
+//    private AppSignUpUtils appSignUpUtils;
 
     @Autowired
     private SecurityProperties securityProperties;
@@ -59,7 +59,7 @@ public class UserController {
         String userId = user.getUserName();
 
         providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
-        appSignUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
+//        appSignUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
     }
 
     @PutMapping("/{id:\\d+}")

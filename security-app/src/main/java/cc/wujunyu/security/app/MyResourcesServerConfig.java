@@ -2,6 +2,7 @@ package cc.wujunyu.security.app;
 
 import cc.wujunyu.security.app.authentication.openid.OpenIdAuthenticationSecurityConfig;
 import cc.wujunyu.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
+import cc.wujunyu.security.core.authorize.AuthorizeConfigManager;
 import cc.wujunyu.security.core.properties.SecurityConstants;
 import cc.wujunyu.security.core.properties.SecurityProperties;
 import cc.wujunyu.security.core.validate.code.ValidateCodeSecurityConfig;
@@ -36,6 +37,9 @@ public class MyResourcesServerConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired
     private SecurityProperties securityProperties;
+
+    @Autowired
+    private AuthorizeConfigManager authorizeConfigManager;
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.formLogin()
@@ -51,21 +55,7 @@ public class MyResourcesServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .apply(openIdAuthenticationSecurityConfig)
                 .and()
-                .authorizeRequests()
-                .antMatchers(
-                        SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-                        SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
-                        securityProperties.getBrowser().getLoginPage(),
-                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*",
-                        securityProperties.getBrowser().getSignUpUrl(),
-                        securityProperties.getBrowser().getSignOutUrl(),
-                        securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
-                        "/social/signup",
-                        "/user/regist")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
                 .csrf().disable();
+        authorizeConfigManager.config(http.authorizeRequests());
     }
 }
